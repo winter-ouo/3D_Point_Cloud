@@ -10,7 +10,7 @@
 | 類別 | 項目 | 說明 |
 | :--- | :--- | :--- |
 | **硬體平台** | ASUS X515 | 針對內建鏡頭與 CPU 運算優化 |
-| **開發環境** | Python 3.x | 建議使用 `venv` 虛擬環境隔離 |
+| **開發環境** | Python 3.x | 並使用 `venv` 虛擬環境隔離 |
 | **手勢辨識** | MediaPipe Hands | Google 提供之高效能手部 21 關節點追蹤 |
 | **渲染引擎** | OpenCV | 負責座標投影與 2D 畫布即時渲染 |
 | **數學運算** | NumPy | 處理 3D 旋轉矩陣 (Rotation Matrix) 與點雲座標 |
@@ -54,7 +54,7 @@ pip install opencv-python mediapipe numpy
 
 ## 📁 專案架構 (Project Structure)
 ```text
-GestureSphere/
+3D_POINT_CLOUD/
 ├── .venv/               # Python 虛擬環境
 ├── main.py              # 進入點：整合影像處理與主迴圈
 ├── geometry.py          # 數學邏輯：存放球體演算法與矩陣運算
