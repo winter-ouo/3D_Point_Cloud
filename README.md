@@ -2,7 +2,13 @@
 <br>
 <br>
 
+![Version](https://img.shields.io/badge/version-v1.0.0-blue?style=flat-square)
+![Mediapipe](https://img.shields.io/badge/Mediapipe-0.10.13-green?style=flat-square)
+![Python](https://img.shields.io/badge/Python-3.12-yellow?style=flat-square)
+
 ## ✨ 特色功能
+
+
 
 * **斐波那契球體演算法 (Fibonacci Sphere)**：生成多達 1300 個均勻分佈的粒子，構建極具科技感的數位球體。
 * **中指指向控制 (Pointing Control)**：精確計算掌心與中指尖的角度偏移，實現直覺的指向性旋轉。
