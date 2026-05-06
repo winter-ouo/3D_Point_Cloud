@@ -35,13 +35,13 @@
 在專案根目錄開啟終端機（VS Code Terminal），執行以下指令：
 ```bash
 # 建立虛擬環境
-python -m venv .venv
+ py -3.12 -m venv .venv
 
 # 啟動虛擬環境 (Windows)
 .venv\Scripts\activate
 
 # 安裝核心套件
-pip install opencv-python mediapipe numpy
+pip install mediapipe==0.10.13 opencv-python numpy
 ```
 
 ### 2. 開發階段 (Development Roadmap)
