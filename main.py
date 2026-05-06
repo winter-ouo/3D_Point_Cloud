@@ -5,7 +5,11 @@ from geometry import create_fibonacci_sphere, rotate_points
 
 # 初始化 MediaPipe
 mp_hands = mp.solutions.hands
-hands = mp_hands.Hands(max_num_hands=1, min_detection_confidence=0.7)
+hands = mp_hands.Hands(
+    max_num_hands=1,
+    min_detection_confidence=0.7, # 提高門檻，不確定的點就不抓
+    min_tracking_confidence=0.8   # 提高追蹤穩定度，這對防手抖很有幫助
+)
 
 # 準備球體原始資料
 POINTS_COUNT = 400  # 粒子數量，ASUS X515 建議 400-600
@@ -66,8 +70,15 @@ while cap.isOpened():
     # 結合原始鏡頭畫面（小視窗）與球體畫布
     cv2.imshow('3D Gesture Sphere', canvas)
 
-    if cv2.waitKey(5) & 0xFF == ord('q'):
+    # 讀取一次按鍵紀錄，存入 key 變數
+    # waitKey(5) 代表等待 5 毫秒，這對 ASUS X515 的效能很平衡
+    key = cv2.waitKey(5) & 0xFF
+    
+    # 同時檢查 'q' (小寫), 'Q' (大寫) 或 'Esc' (27)
+    if key == ord('q') or key == ord('Q') or key == 27:
+        print("使用者要求退出...")
         break
 
+# 迴圈結束後的善後
 cap.release()
 cv2.destroyAllWindows()
