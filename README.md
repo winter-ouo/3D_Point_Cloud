@@ -87,4 +87,4 @@ $$Value_{smooth} = (\alpha \cdot Value_{new}) + (1 - \alpha) \cdot Value_{old}$$
 
 ### 💡 部分參數
 * **效能調優**：若在低配環境運行，可修改 `main.py` 中的 `POINTS_COUNT` 至 400-600。
-* **初始大小**：可調整 `target_scale = 50 + dist * 800` 中的常數項來改變初始體積。
+* **初始大小**：可調整 `target_scale = 50 + dist * 400` 中的常數項來改變初始體積。
