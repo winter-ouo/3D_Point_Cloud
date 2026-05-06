@@ -13,7 +13,7 @@ hands = mp_hands.Hands(
 )
 
 # --- 2. 準備球體原始資料 ---
-POINTS_COUNT = 1300
+POINTS_COUNT = 2000
 original_points = create_fibonacci_sphere(POINTS_COUNT)
 
 # --- 3. 初始化控制與平滑參數 ---
