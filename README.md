@@ -1,72 +1,90 @@
-# 3D Point Cloud
-### 🖐️ 手勢控制 3D 粒子球體互動系統
+<h1 style="display: inline;">3D Point Cloud</h1> <h4 style="display: inline;"> &nbsp;&nbsp;&nbsp;&nbsp; 一個透過手勢控制 3D 粒子球體互動系統</h4>
+<br>
+<br>
 
-這是一個結合電腦視覺與 3D 數學幾何的互動專案。透過筆電鏡頭追蹤手勢，即時操控一個由均勻點陣組成的 3D 粒子球體，實現旋轉、縮放與空間互動。
+## ✨ 特色功能
 
----
-
-## 🛠 技術規格 (Technical Specs)
-
-| 類別 | 項目 | 說明 |
-| :--- | :--- | :--- |
-| **硬體平台** | ASUS X515 | 針對內建鏡頭與 CPU 運算優化 |
-| **開發環境** | Python 3.x | 並使用 `venv` 虛擬環境隔離 |
-| **手勢辨識** | MediaPipe Hands | Google 提供之高效能手部 21 關節點追蹤 |
-| **渲染引擎** | OpenCV | 負責座標投影與 2D 畫布即時渲染 |
-| **數學運算** | NumPy | 處理 3D 旋轉矩陣 (Rotation Matrix) 與點雲座標 |
+* **斐波那契球體演算法 (Fibonacci Sphere)**：生成多達 1300 個均勻分佈的粒子，構建極具科技感的數位球體。
+* **中指指向控制 (Pointing Control)**：精確計算掌心與中指尖的角度偏移，實現直覺的指向性旋轉。
+* **動態縮放 (Pinch Zoom)**：追蹤大拇指與食指距離，即時控制球體大小。
+* **指數平滑濾波 (Exponential Smoothing)**：內建防手抖邏輯，讓球體轉動如絲般順滑。
+* **全息模式 (Debug Overlay)**：支援攝影機畫面與 3D 粒子畫面的透明疊加顯示，可同時觀察手勢與球體。
 
 ---
 
-## 📐 核心開發邏輯
+## 🛠️ 運行環境
 
-### 1. 均勻點雲生成 (Fibonacci Sphere Algorithm)
-為了避免點在球體兩極過於擁擠，我們採用斐波那契螺旋演算法，確保 $N$ 個點在球面上完美均勻分佈。
+* **硬體平台**: Windows(已在 ASUS X515 測試通過)
+* **Python 版本**: 3.12
+* **核心套件**:
+    * `mediapipe` (建議 0.10.13)
+    * `opencv-python`
+    * `numpy`
 
-### 2. 手勢控制映射
-*   **動態縮放 (Zoom)**：偵測「大拇指尖 (Landmark 4)」與「食指尖 (Landmark 8)」之距離。
-*   **空間旋轉 (Rotation)**：追蹤「手掌中心」在水平 ($x$) 與垂直 ($y$) 方向的偏移量。
-*   **3D 視覺模擬**：根據 $z$ 軸深度調整點的大小與亮度，營造 3D 立體感。
 
----
 
-## 🚀 快速開始 (Quick Start)
+## 🚀 快速開始
 
-### 1. 環境初始化
-在專案根目錄開啟終端機（VS Code Terminal），執行以下指令：
+### 1. 複製專案
 ```bash
-# 建立虛擬環境
- py -3.12 -m venv .venv
+git clone [https://github.com/winter-ouo/3D_Point_Cloud.git](https://github.com/winter-ouo/3D_Point_Cloud.git)
+cd 3D_Point_Cloud
+```
 
-# 啟動虛擬環境 (Windows)
+### 2. 建立並啟動虛擬環境
+```bash
+py -3.12 -m venv .venv
 .venv\Scripts\activate
+```
 
-# 安裝核心套件
+### 3. 安裝依賴套件
+```bash
 pip install mediapipe==0.10.13 opencv-python numpy
 ```
 
-### 2. 開發階段 (Development Roadmap)
-- [ ] **Phase 1: 影像輸入** - 確保 OpenCV 能正常驅動 ASUS X515 前鏡頭。
-- [ ] **Phase 2: 手勢解析** - 整合 MediaPipe 並取得手部 21 個座標點。
-- [ ] **Phase 3: 數學建模** - 實作 3D 旋轉矩陣與點雲投影公式。
-- [ ] **Phase 4: 整合渲染** - 將手勢參數映射至球體，完成互動迴圈。
+### 4. 執行程式
+```bash
+python main.py
+```
 
 ---
 
-## 📁 專案架構 (Project Structure)
+## 🎮 操作說明
+* **啟用**：伸出左手，並置於鏡頭畫面中
+* **旋轉**：伸出中指，以掌心為基準移動，球體會指向你的中指方向。
+* **縮放**：使用大拇指與食指透過「捏合」及「張開」控制球體縮放。
+* **退出**：在鏡頭畫面的視窗中，按下 **`q`** 或 **`Esc`** 鍵。
+
+---
+
+## 📂 專案結構
+
 ```text
 3D_POINT_CLOUD/
 ├── .venv/               # Python 虛擬環境
 ├── main.py              # 進入點：整合影像處理與主迴圈
 ├── geometry.py          # 數學邏輯：存放球體演算法與矩陣運算
-├── requirements.txt     # 套件清單
 └── README.md            # 本說明文件
 ```
 
 ---
-
-## 💡 開發備忘錄
-*   **效能優化**：若畫面出現延遲，請將 `N` (點的數量) 降至 500 以下。
-*   **Docker 說明**：目前優先使用 `venv` 開發以利鏡頭存取；未來若需 Docker 化，需解決 WSL2 對硬體裝置的掛載權限。
-*   **互動設計**：建議加入平滑移動（Smoothing）機制，減少手部細微抖動對球體造成的閃爍。
 ---
-修改日期  2026/05/07
+
+## 🧠 技術細節
+
+### 旋轉邏輯 (Rotation Matrix)
+我們使用了標準的 X 與 Y 軸旋轉矩陣。點雲 $P$ 經過旋轉矩陣 $R$ 運算得到新座標 $P'$：
+
+$$P' = P \cdot R_x^T \cdot R_y^T$$
+
+### 防手抖公式 (Smoothing)
+為了消除指尖微顫，我們對角度與縮放使用了指數平滑公式：
+
+$$Value_{smooth} = (\alpha \cdot Value_{new}) + (1 - \alpha) \cdot Value_{old}$$
+
+
+---
+
+### 💡 部分參數
+* **效能調優**：若在低配環境運行，可修改 `main.py` 中的 `POINTS_COUNT` 至 400-600。
+* **初始大小**：可調整 `target_scale = 50 + dist * 800` 中的常數項來改變初始體積。
