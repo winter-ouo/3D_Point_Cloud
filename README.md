@@ -69,4 +69,4 @@ pip install opencv-python mediapipe numpy
 *   **Docker 說明**：目前優先使用 `venv` 開發以利鏡頭存取；未來若需 Docker 化，需解決 WSL2 對硬體裝置的掛載權限。
 *   **互動設計**：建議加入平滑移動（Smoothing）機制，減少手部細微抖動對球體造成的閃爍。
 ---
-修改日期 2026/05/07
+修改日期  2026/05/07
