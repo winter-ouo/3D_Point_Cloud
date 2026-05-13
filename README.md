@@ -68,7 +68,8 @@ python main.py
 ├── .venv/               # Python 虛擬環境
 ├── main.py              # 進入點：整合影像處理與主迴圈
 ├── geometry.py          # 數學邏輯：存放球體演算法與矩陣運算
-└── README.md            # 本說明文件
+├── README.md            # 本說明文件
+└── requirements.txt     # 詳細套件清單(含版本)
 ```
 
 ---
